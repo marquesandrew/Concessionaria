@@ -332,7 +332,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
             if (confirmacao == JOptionPane.YES_OPTION){
                 try {
                     DefaultTableModel dtmTabelaCadastroCliente = (DefaultTableModel) jTable_Cliente.getModel();
-                    int id = (int) dtmTabelaCadastroCliente.getValueAt(linhaSelecionada, 2);//pega o id da coluna oculta
+                    int id = (int) dtmTabelaCadastroCliente.getValueAt(linhaSelecionada, 0);//pega o id da coluna oculta
 
                     GenericDAO<Cliente> dao = new GenericDAO<> (Cliente.class);
                     dao.delete("cliente",id);
@@ -353,7 +353,25 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_ExcluirActionPerformed
 
     private void jButton_ClienteConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ClienteConsultarActionPerformed
+        GenericDAO<Cliente> dao = new GenericDAO<>(Cliente.class);
+        try {
+            List<Cliente> clientes = dao.selectAll("cliente");
+            
+            DefaultTableModel dtmTabelaCadastroCliente = (DefaultTableModel) jTable_Cliente.getModel();
+            dtmTabelaCadastroCliente.setRowCount(0);
+            
+            for(Cliente cliente:clientes){
+                dtmTabelaCadastroCliente.addRow(
+                        new Object[]{cliente.getId(),cliente.getNome(),cliente.getCpf(),cliente.getTelefone(),cliente.getEmail(),cliente.getNascimento(),cliente.getSexo()});
+                
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro ao consultar clientes.");
+        }
+                
+            
         
+                
     }//GEN-LAST:event_jButton_ClienteConsultarActionPerformed
 
 

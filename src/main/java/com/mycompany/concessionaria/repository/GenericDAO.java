@@ -94,6 +94,7 @@ public class GenericDAO<T> {
     }
 
     public List<T> selectAll(String tableName) throws SQLException {
+        
         List<T> result = new ArrayList<>();
         String sql = "SELECT * FROM " + tableName;
 
@@ -112,9 +113,12 @@ public class GenericDAO<T> {
                             // Converte BigDecimal em double se necessário
                             if (field.getType() == double.class && value instanceof java.math.BigDecimal) {
                                 field.set(instance, ((java.math.BigDecimal) value).doubleValue());
+                            } else if (field.getType() == java.time.LocalDate.class && value instanceof java.sql.Date) {
+                                java.sql.Date dataSQL = (java.sql.Date) value;
+                                field.set(instance, dataSQL.toLocalDate());
                             } else {
                                 field.set(instance, value);
-                            }
+                            }   
                         }
                     }
                 }

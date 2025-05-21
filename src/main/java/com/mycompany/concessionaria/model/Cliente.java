@@ -14,6 +14,7 @@ import java.util.List;
  * @author Usuario
  */
 public class Cliente {
+    private int id;
     private String nome;
     private String cpf;
     private String telefone;
@@ -21,17 +22,25 @@ public class Cliente {
     private LocalDate nascimento;
     private String sexo;
     List<Venda> compras;
-
-    public Cliente(String nome, String cpf, String telefone, String email, LocalDate nascimento, String sexo,List<Venda> compras) {
+    
+    public Cliente(int id, String nome, String cpf, String telefone, String email, LocalDate nascimento, String sexo, List<Venda> compras) {
+        this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
         this.email = email;
         this.nascimento = nascimento;
         this.sexo = sexo;
-        this.compras = new ArrayList<>();
+        this.compras = compras;
     }
-    
+
+    public int getId() {
+        return id;
+    }
+  
+
+     public Cliente() {}
+     
     public Cliente(String nome, String cpf, String telefone, String email, LocalDate nascimento, String sexo) {
         this.nome = nome;
         this.cpf = cpf;
