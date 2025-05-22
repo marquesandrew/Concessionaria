@@ -1,5 +1,6 @@
 com\mycompany\concessionaria\model\EquipamentoDeSerie.class
 com\mycompany\concessionaria\model\Cliente.class
+com\mycompany\concessionaria\view\TelaCliente$6.class
 com\mycompany\concessionaria\view\TelaUsuario$1.class
 com\mycompany\concessionaria\view\TelaLogin.class
 com\mycompany\concessionaria\view\TelaPrincipal$5.class
@@ -12,6 +13,7 @@ com\mycompany\concessionaria\view\TelaUsuario$4.class
 com\mycompany\concessionaria\view\TelaSobre.class
 com\mycompany\concessionaria\view\TelaPrincipal$4.class
 com\mycompany\concessionaria\model\EquipamentoOpcional.class
+com\mycompany\concessionaria\view\TelaCliente$7.class
 com\mycompany\concessionaria\view\TelaVeiculo.class
 com\mycompany\concessionaria\view\TelaVeiculo$1.class
 com\mycompany\concessionaria\view\TelaUsuario$3.class
@@ -25,6 +27,7 @@ com\mycompany\concessionaria\Concessionaria.class
 com\mycompany\concessionaria\config\PostgresConnection.class
 com\mycompany\concessionaria\view\TelaPrincipal$6.class
 com\mycompany\concessionaria\view\TelaPrincipal$3.class
+com\mycompany\concessionaria\view\TelaCliente$5.class
 com\mycompany\concessionaria\view\TelaPrincipal.class
 com\mycompany\concessionaria\view\TelaCliente$3.class
 com\mycompany\concessionaria\view\TelaUsuario$2.class

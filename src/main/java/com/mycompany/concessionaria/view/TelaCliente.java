@@ -59,6 +59,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         jTable_Cliente = new javax.swing.JTable();
         jButton_Excluir = new javax.swing.JButton();
         jButton_ClienteConsultar = new javax.swing.JButton();
+        jButtonLimpar = new javax.swing.JButton();
 
         setTitle("Cadastro de Clientes");
 
@@ -197,74 +198,100 @@ public class TelaCliente extends javax.swing.JInternalFrame {
             new String [] {
                 "Id","Nome", "Cpf", "Telefone", "Email", "Nascimento", "Sexo"
             }
-        ));
-        jScrollPane1.setViewportView(jTable_Cliente);
-
-        jButton_Excluir.setText("Excluir");
-        jButton_Excluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ExcluirActionPerformed(evt);
+        ){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // nenhuma célula da tabela será editável
             }
-        });
+        }
 
-        jButton_ClienteConsultar.setText("Consultar");
-        jButton_ClienteConsultar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ClienteConsultarActionPerformed(evt);
-            }
-        });
+    );
+    jTable_Cliente.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            jTable_ClienteMouseClicked(evt);
+        }
+    });
+    jScrollPane1.setViewportView(jTable_Cliente);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(283, 283, 283)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(190, 190, 190)
-                                .addComponent(jButton_Cancelar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton_ClienteConsultar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton_Excluir)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton_Salvar)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1)
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    jButton_Excluir.setText("Excluir");
+    jButton_Excluir.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_ExcluirActionPerformed(evt);
+        }
+    });
+
+    jButton_ClienteConsultar.setText("Consultar");
+    jButton_ClienteConsultar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton_ClienteConsultarActionPerformed(evt);
+        }
+    });
+
+    jButtonLimpar.setText("Limpar dados");
+    jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButtonLimparActionPerformed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1))
+                .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(283, 283, 283)
+                            .addComponent(jLabel1))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(190, 190, 190)
+                            .addComponent(jButton_Cancelar)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton_ClienteConsultar)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton_Excluir)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton_Salvar)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addContainerGap())
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addGap(19, 19, 19)
+            .addComponent(jLabel1)
+            .addGap(31, 31, 31)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_Salvar)
-                    .addComponent(jButton_Cancelar)
-                    .addComponent(jButton_Excluir)
-                    .addComponent(jButton_ClienteConsultar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jButtonLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(18, 18, 18)))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jButton_Salvar)
+                .addComponent(jButton_Cancelar)
+                .addComponent(jButton_Excluir)
+                .addComponent(jButton_ClienteConsultar))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
 
-        pack();
+    pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarActionPerformed
@@ -376,15 +403,44 @@ public class TelaCliente extends javax.swing.JInternalFrame {
             }
         } catch (SQLException ex) {
             System.out.println("Erro ao consultar clientes.");
-        }
-                
-            
-        
-                
+        }             
     }//GEN-LAST:event_jButton_ClienteConsultarActionPerformed
+
+    private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
+        jTextField_Cliente_Nome.setText("");
+        jFormattedTextField_Cliente_Cpf.setText("");
+        jTextField_Cliente_Email.setText("");
+        jFormattedTextField_Cliente_Nascimento.setText("");
+        jFormattedTextField_Cliente_Telefone.setText("");
+        jComboBoxClienteSexo.setSelectedIndex(0);
+    }//GEN-LAST:event_jButtonLimparActionPerformed
+
+    private void jTable_ClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_ClienteMouseClicked
+        //if (evt.getClickCount() == 2 && jTable_Cliente.getSelectedRow() != -1) {
+            int linha = jTable_Cliente.getSelectedRow();
+
+            //String id = jTable_Cliente.getValueAt(linha, 0).toString();
+            String nome = jTable_Cliente.getValueAt(linha,1).toString();
+            String cpf = jTable_Cliente.getValueAt(linha, 2).toString();
+            String telefone = jTable_Cliente.getValueAt(linha, 3).toString();
+            String email = jTable_Cliente.getValueAt(linha, 4).toString();
+            String nascimento = jTable_Cliente.getValueAt(linha, 5).toString();
+            String sexo = jTable_Cliente.getValueAt(linha, 6).toString();
+
+            // Joga os valores nos campos da tela
+            
+            jTextField_Cliente_Nome.setText(nome);
+            jFormattedTextField_Cliente_Cpf.setText(cpf);
+            jFormattedTextField_Cliente_Telefone.setText(telefone);
+            jTextField_Cliente_Email.setText(email);
+            jFormattedTextField_Cliente_Nascimento.setText(nascimento); // se for JFormattedTextField
+            jComboBoxClienteSexo.setSelectedItem(sexo);
+       // }
+    }//GEN-LAST:event_jTable_ClienteMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButton_Cancelar;
     private javax.swing.JButton jButton_ClienteConsultar;
     private javax.swing.JButton jButton_Excluir;
