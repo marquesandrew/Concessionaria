@@ -6,16 +6,6 @@ package com.mycompany.concessionaria.view;
 
 import com.mycompany.concessionaria.repository.GenericDAO;
 import com.mycompany.concessionaria.model.Cliente;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.sql.SQLException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -294,7 +284,8 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         try {
             cliente_nascimento = LocalDate.parse(clienteNascimentoDataString,formatoNascimentoCliente);
         } catch (DateTimeException e){
-            JOptionPane.showMessageDialog(rootPane, "Data Inválida: " + clienteNascimentoDataString);
+            cliente_nascimento = LocalDate.parse("01/01/1900",formatoNascimentoCliente);
+            //JOptionPane.showMessageDialog(rootPane, "Data Inválida: " + clienteNascimentoDataString);
         }
         
         Cliente cliente = new Cliente(client_nome, cliente_cpf, cliente_telefone, cliente_email, cliente_nascimento, cliente_sexo);
@@ -306,9 +297,11 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         jFormattedTextField_Cliente_Telefone.setText("");
         jComboBoxClienteSexo.setSelectedIndex(0);
         
+        /*
         DefaultTableModel dtmTabelaCadastroCliente = (DefaultTableModel) jTable_Cliente.getModel();
         Object [] dadosTabelaCliente = {client_nome,cliente_cpf,cliente_telefone,cliente_email,cliente_nascimento,cliente_sexo};
         dtmTabelaCadastroCliente.addRow(dadosTabelaCliente);
+        */
         
         /* GRAVAR NO BANCO POSTGRES*/
         GenericDAO<Cliente> dao = new GenericDAO<>(Cliente.class);
@@ -317,6 +310,22 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         }catch (SQLException ex) {
             Logger.getLogger(TelaCliente.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Erro ao persistir dados");
+        }
+        
+        //consulta para montar tabela
+        try {
+            List<Cliente> clientes = dao.selectAll("cliente");
+            
+            DefaultTableModel dtmTabelaCadastroCliente = (DefaultTableModel) jTable_Cliente.getModel();
+            dtmTabelaCadastroCliente.setRowCount(0);
+            
+            for(Cliente c:clientes){
+                dtmTabelaCadastroCliente.addRow(
+                        new Object[]{c.getId(),c.getNome(),c.getCpf(),c.getTelefone(),c.getEmail(),c.getNascimento(),c.getSexo()});
+                
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro ao consultar clientes.");
         }
         
     }//GEN-LAST:event_jButton_SalvarActionPerformed
